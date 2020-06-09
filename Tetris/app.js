@@ -1,6 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const boardSize = 600;
+    const boardSize = 160;
     let board = document.getElementById('board');
+    let startButton = document.getElementById('startButton');
+    let score = document.getElementById("score");
     
     //Setting up the tetris grid
     for (i = 0; i < boardSize; i++){
@@ -8,5 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     let squares = Array.from(document.querySelectorAll('#board div'));
-    console.log(squares);
+    squares.forEach((element, index) => {
+        console.log(index + " " + element);
+    });
 });
