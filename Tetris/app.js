@@ -1,8 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
     const boardSize = 160;
-    let board = document.getElementById('board');
-    let startButton = document.getElementById('startButton');
-    let score = document.getElementById("score");
+    const boardWidth = 9
+    const board = document.getElementById('board');
+    const startButton = document.getElementById('startButton');
+    const score = document.getElementById("score");
     
     //Setting up the tetris grid
     for (i = 0; i < boardSize; i++){
@@ -10,7 +11,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     let squares = Array.from(document.querySelectorAll('#board div'));
-    squares.forEach((element, index) => {
-        console.log(index + " " + element);
-    });
+
+    let LShape = {
+      rotation1: [1, 2, boardWidth+2, boardWidth*2+2],
+      rotation2: [boardWidth+1, boardWidth+2, boardWidth+3, boardWidth*2+3],
+      rotation3: [1, boardWidth+2, boardWidth*2+2, boardWidth*2+1],
+      rotation4: [boardWidth+1, boardWidth*2+1, boardWidth*2+2, boardWidth*2+3]
+    };
+
 });
