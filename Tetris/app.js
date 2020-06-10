@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const boardSize = 160;
-    const boardWidth = 10
+    const boardSize = 400;
+    const boardWidth = 16
     const board = document.getElementById('board');
     const startButton = document.getElementById('startButton');
     const score = document.getElementById("score");
@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     let squares = Array.from(document.querySelectorAll('#board div'));
+    console.log(squares);
 
     let lShape1 = {
       rotation1: [0, 1, 2, boardWidth],
@@ -63,7 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const tetrominos = [lShape1, lShape2, iShape, tShape, zShape1, zShape2, squareShape]
     let currentPosition = 4
-    let currentTetromino = tetrominos[5].rotation;
+    let currentTetromino = tetrominos[5].rotation2;
     
     function draw(){
         currentTetromino.forEach(index => {
