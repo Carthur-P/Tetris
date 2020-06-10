@@ -112,12 +112,14 @@ document.addEventListener('DOMContentLoaded', () => {
         remove();
         currentPosition -= 1;
         draw();
+        freeze();
     }
 
     function moveRight(){
         remove();
         currentPosition += 1;
         draw();
+        freeze();
     }
 
     //starting game timer
