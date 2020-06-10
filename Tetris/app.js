@@ -10,9 +10,11 @@ document.addEventListener('DOMContentLoaded', () => {
         board.innerHTML += '<div></div>' 
     }
 
+    //Stroing all th <div> as an array
     let squares = Array.from(document.querySelectorAll('#board div'));
     console.log(squares);
 
+    //Creating all the tetris blocks and their 4 rotations
     let lShape1 = {
       rotation1: [0, 1, 2, boardWidth],
       rotation2: [0, 1, boardWidth+1, boardWidth*2+1],
@@ -62,13 +64,23 @@ document.addEventListener('DOMContentLoaded', () => {
           rotation4: [1, 2, boardWidth*1+1, boardWidth*1+2],
       }
 
+    //seeting up current block position and rotation
     const tetrominos = [lShape1, lShape2, iShape, tShape, zShape1, zShape2, squareShape]
     let currentPosition = 4
     let currentTetromino = tetrominos[5].rotation2;
     
+    //drawing the block onto screen
     function draw(){
         currentTetromino.forEach(index => {
+            //changing the div css styling
             squares[currentPosition + index].classList.add('tetromino');
+        });
+    }
+
+    //removing block form screen
+    function remove(){
+        currentTetromino.forEach(index => {
+            squares[index].classList.remove('tetromino');
         });
     }
 
