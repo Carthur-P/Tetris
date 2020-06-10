@@ -65,9 +65,11 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
     //seeting up current block position and rotation
+    //block will be chosen at random
     const tetrominos = [lShape1, lShape2, iShape, tShape, zShape1, zShape2, squareShape]
-    let currentPosition = 4
-    let currentTetromino = tetrominos[5].rotation2;
+    let currentPosition = 6;
+    let tetrominoSelector = Math.floor(Math.random() * tetrominos.length);
+    let currentTetromino = tetrominos[tetrominoSelector].rotation1;
     
     //drawing the block onto screen
     function draw(){
