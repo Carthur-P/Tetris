@@ -3,6 +3,7 @@
     display: flex;
     flex-wrap: wrap;
     width: 400px;
+    height: 625px;
 }
 
 #board div{
@@ -12,4 +13,8 @@
 
 .tetromino {
     background-color: brown;
+}
+
+.freeze {
+    background-color: lawngreen;
 }

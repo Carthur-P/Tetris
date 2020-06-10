@@ -6,8 +6,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const score = document.getElementById("score");
     
     //Setting up the tetris grid
-    for (i = 0; i < boardSize; i++){
+    for(i = 0; i < boardSize; i++){
         board.innerHTML += '<div></div>' 
+    }
+
+    for(i = 0; i < boardWidth; i++){
+        board.innerHTML += '<div class="freeze"></div>' 
     }
 
     //Stroing all th <div> as an array
@@ -86,6 +90,19 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    function freeze(){
+        currentTetromino.some(index => {
+            if(squares[currentPosition + index + boardWidth].classList.contains('freeze')){
+                currentTetromino.forEach(index => {
+                    squares[currentPosition + index].classList.add('freeze');
+                });
+                currentPosition = 6
+                tetrominoSelector = Math.floor(Math.random() * tetrominos.length);
+                currentTetromino = tetrominos[tetrominoSelector].rotation1;
+            }
+        });
+    }
+
     //initail draw
     draw();
 
@@ -94,5 +111,6 @@ document.addEventListener('DOMContentLoaded', () => {
         remove();
         currentPosition += boardWidth;
         draw();
+        freeze();
     }, 500);
 });
