@@ -90,23 +90,26 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    //check if the blocks should stop
     function freeze(){
+        //use .some() so as soon as one square reaches the bottom, the loop breaks instead of using foreach which will go through the whole array.
         currentTetromino.some(index => {
             if(squares[currentPosition + index + boardWidth].classList.contains('freeze')){
+                //Adding the class 'freeze' to the blocks
                 currentTetromino.forEach(index => {
                     squares[currentPosition + index].classList.add('freeze');
                 });
+                //creating a new block at the top of the board
                 currentPosition = 6
                 tetrominoSelector = Math.floor(Math.random() * tetrominos.length);
                 currentTetromino = tetrominos[tetrominoSelector].rotation1;
+                draw();
             }
         });
     }
 
-    //initail draw
+    //starting game timer
     draw();
-
-    //moving the block down the board with timer
     const timer = setInterval(() => {
         remove();
         currentPosition += boardWidth;
