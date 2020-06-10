@@ -82,9 +82,17 @@ document.addEventListener('DOMContentLoaded', () => {
     //removing block form screen
     function remove(){
         currentTetromino.forEach(index => {
-            squares[index].classList.remove('tetromino');
+            squares[currentPosition + index].classList.remove('tetromino');
         });
     }
 
+    //initail draw
     draw();
+
+    //moving the block down the board with timer
+    const timer = setInterval(() => {
+        remove();
+        currentPosition += boardWidth;
+        draw();
+    }, 500);
 });
