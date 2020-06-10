@@ -95,7 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
         //use .some() so as soon as one square reaches the bottom, the loop breaks instead of using foreach which will go through the whole array.
         currentTetromino.some(index => {
             if(squares[currentPosition + index + boardWidth].classList.contains('freeze')){
-                //Adding the class 'freeze' to the blocks
+                //Adding the class 'freeze' to all the <div> that form the block
                 currentTetromino.forEach(index => {
                     squares[currentPosition + index].classList.add('freeze');
                 });
@@ -108,6 +108,18 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    function moveLeft(){
+        remove();
+        currentPosition -= 1;
+        draw();
+    }
+
+    function moveRight(){
+        remove();
+        currentPosition += 1;
+        draw();
+    }
+
     //starting game timer
     draw();
     const timer = setInterval(() => {
@@ -116,4 +128,13 @@ document.addEventListener('DOMContentLoaded', () => {
         draw();
         freeze();
     }, 500);
+
+    //key press event
+    document.addEventListener('keyup', (e) => {
+        console.log(e.keyCode);
+        if(e.keyCode == 37){
+            moveLeft();
+        }
+        
+    });
 });
