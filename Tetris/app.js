@@ -12,44 +12,58 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let squares = Array.from(document.querySelectorAll('#board div'));
 
-    let LShape = {
-      rotation1: [1, 2, boardWidth+1, boardWidth*2+1],
-      rotation2: [boardWidth+1, boardWidth+2, boardWidth+3, boardWidth*2+3],
-      rotation3: [1, boardWidth+1, boardWidth*2+1, boardWidth*2],
-      rotation4: [boardWidth, boardWidth*2, boardWidth*2+1, boardWidth*2+2]
+    let lShape1 = {
+      rotation1: [0, 1, 2, boardWidth],
+      rotation2: [0, 1, boardWidth+1, boardWidth*2+1],
+      rotation3: [boardWidth*2, boardWidth*2+1, boardWidth*2+2, boardWidth+2],
+      rotation4: [1, boardWidth*1+1, boardWidth*2+1, boardWidth*2+2]
     };
 
-    let IShape = {
-        rotation1: [0, boardWidth*1, boardWidth*2, boardWidth*3],
-        rotation2: [0, 1, 2, 3],
-        rotation3: [3, boardWidth*1+3, boardWidth*2+3, boardWidth*3+3],
-        rotation4: [boardWidth*3, boardWidth*3+1, boardWidth*3+2, boardWidth*3+3]
+    let lShape2 = {
+        rotation1: [0, 1, 2, boardWidth+2],
+        rotation2: [1, boardWidth+1, boardWidth*2+1, boardWidth*2],
+        rotation3: [boardWidth, boardWidth*2, boardWidth*2+1, boardWidth*2+2],
+        rotation4: [1, 2, boardWidth+1, boardWidth*2+1]
       };
 
-    //   let LShape = {
-    //     rotation1: [1, 2, boardWidth+2, boardWidth*2+2],
-    //     rotation2: [boardWidth+1, boardWidth+2, boardWidth+3, boardWidth*2+3],
-    //     rotation3: [1, boardWidth+2, boardWidth*2+2, boardWidth*2+1],
-    //     rotation4: [boardWidth+1, boardWidth*2+1, boardWidth*2+2, boardWidth*2+3]
-    //   };
+    let iShape = {
+        rotation1: [0, 1, 2, 3],
+        rotation2: [2, boardWidth+2, boardWidth*2+2, boardWidth*3+2],
+        rotation3: [boardWidth*3, boardWidth*3+1, boardWidth*3+2, boardWidth*3+3],
+        rotation4: [1, boardWidth+1, boardWidth*2+1, boardWidth*3+1]
+      };
 
-    //   let LShape = {
-    //     rotation1: [1, 2, boardWidth+2, boardWidth*2+2],
-    //     rotation2: [boardWidth+1, boardWidth+2, boardWidth+3, boardWidth*2+3],
-    //     rotation3: [1, boardWidth+2, boardWidth*2+2, boardWidth*2+1],
-    //     rotation4: [boardWidth+1, boardWidth*2+1, boardWidth*2+2, boardWidth*2+3]
-    //   };
+      let tShape = {
+        rotation1: [0, 1, 2, boardWidth+1],
+        rotation2: [1, boardWidth+1, boardWidth*2+1, boardWidth],
+        rotation3: [boardWidth*2, boardWidth*2+1, boardWidth*2+2, boardWidth*1+1],
+        rotation4: [1, boardWidth+1, boardWidth*2+1, boardWidth+2]
+      };
 
-    //   let LShape = {
-    //     rotation1: [1, 2, boardWidth+2, boardWidth*2+2],
-    //     rotation2: [boardWidth+1, boardWidth+2, boardWidth+3, boardWidth*2+3],
-    //     rotation3: [1, boardWidth+2, boardWidth*2+2, boardWidth*2+1],
-    //     rotation4: [boardWidth+1, boardWidth*2+1, boardWidth*2+2, boardWidth*2+3]
-    //   };
+      let zShape1 = {
+        rotation1: [boardWidth*1, boardWidth*1+1, 1, 2],
+        rotation2: [1, boardWidth+1, boardWidth+2, boardWidth*2+2],
+        rotation3: [boardWidth*1, boardWidth*1+1, 1, 2],
+        rotation4: [0, boardWidth, boardWidth+1, boardWidth*2+1]
+      };
 
-    const tetrominos = [LShape, IShape]
-    let currentPosition = 14
-    let currentTetromino = tetrominos[1].rotation4;
+      let zShape2 = {
+        rotation1: [1, 2, boardWidth*1+2, boardWidth*1+3],
+        rotation2: [boardWidth*2+1, boardWidth+1, boardWidth+2, 2],
+        rotation3: [1, 2, boardWidth*1+2, boardWidth*1+3],
+        rotation4: [boardWidth*2, boardWidth, boardWidth+1, 1]
+      };
+
+      let squareShape = {
+          rotation1: [1, 2, boardWidth*1+1, boardWidth*1+2],
+          rotation2: [1, 2, boardWidth*1+1, boardWidth*1+2],
+          rotation3: [1, 2, boardWidth*1+1, boardWidth*1+2],
+          rotation4: [1, 2, boardWidth*1+1, boardWidth*1+2],
+      }
+
+    const tetrominos = [lShape1, lShape2, iShape, tShape, zShape1, zShape2, squareShape]
+    let currentPosition = 4
+    let currentTetromino = tetrominos[5].rotation;
     
     function draw(){
         currentTetromino.forEach(index => {
