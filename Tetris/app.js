@@ -119,7 +119,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function moveLeft() {
     remove();
-    currentPosition -= 1;
+    let atLeftEdge = currentTetromino.some(index => {
+        (currentPosition + index) % boardWidth === 0;
+    });
+    console.log(atLeftEdge);
+    if(!atLeftEdge){
+        currentPosition -= 1;
+    }
     draw();
     freeze();
   }
