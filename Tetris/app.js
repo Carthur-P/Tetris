@@ -69,15 +69,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   //seeting up current block position and rotation
   //block will be chosen at random
-  const tetrominos = [
-    lShape1,
-    lShape2,
-    iShape,
-    tShape,
-    zShape1,
-    zShape2,
-    squareShape,
-  ];
+  const tetrominos = [lShape1, lShape2, iShape, tShape, zShape1, zShape2, squareShape];
   let currentPosition = 6;
   let rotationSelector = 0;
   let tetrominoSelector = tetrominos[Math.floor(Math.random() * tetrominos.length)];
@@ -154,15 +146,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function rotate() {
     remove();
-    if(rotationSelector < tetrominoSelector.length - 1){
-        rotationSelector++;
-        currentTetromino = tetrominoSelector[rotationSelector];
-    } else {
-        rotationSelector = 0;
-        currentTetromino = tetrominoSelector[rotationSelector];
+    rotationSelector ++;
+    if(rotationSelector == currentTetromino.length){
+      rotationSelector = 0;
     }
+    currentTetromino = tetrominoSelector[rotationSelector]
     draw();
-    freeze();
   }
 
   //starting game timer
