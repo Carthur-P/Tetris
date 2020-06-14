@@ -1,17 +1,25 @@
 document.addEventListener("DOMContentLoaded", () => {
   const boardSize = 400;
   const boardWidth = 16;
+  const previewBoardSize = 16;
   const board = document.getElementById("board");
+  const previewBoard = document.getElementById('previewBoard');
   const startButton = document.getElementById("startButton");
   const score = document.getElementById("score");
 
-  //Setting up the tetris grid
-  for (i = 0; i < boardSize; i++) {
+  //Setting up the tetris board
+  for(i = 0; i < boardSize; i++) {
     board.innerHTML += "<div></div>";
   }
 
-  for (i = 0; i < boardWidth; i++) {
+  //setting up bottom of board
+  for(i = 0; i < boardWidth; i++) {
     board.innerHTML += '<div class="freeze"></div>';
+  }
+
+  //setting up sample board that shows next block
+  for(i = 0; i < previewBoardSize; i ++){
+    previewBoard.innerHTML += "<div></div>";
   }
 
   //Stroing all th <div> as an array

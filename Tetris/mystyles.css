@@ -4,9 +4,24 @@
     flex-wrap: wrap;
     width: 400px;
     height: 625px;
+    float: left;
 }
 
 #board div{
+    width: 25px;
+    height: 25px;
+}
+
+#previewBoard{
+    background-color: aqua;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100px;
+    margin-left: 25px;
+    float: left;
+}
+
+#previewBoard div{
     width: 25px;
     height: 25px;
 }
