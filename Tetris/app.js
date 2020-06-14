@@ -117,12 +117,11 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  //moving the blocks left by changing the current position
   function moveLeft() {
     remove();
-    let atLeftEdge = currentTetromino.some(index => {
-        (currentPosition + index) % boardWidth === 0;
-    });
-    console.log(atLeftEdge);
+    //checking to see if the block is at the left edge of the board
+    let atLeftEdge = currentTetromino.some(index => (currentPosition + index) % boardWidth === 0);
     if(!atLeftEdge){
         currentPosition -= 1;
     }
@@ -130,9 +129,15 @@ document.addEventListener("DOMContentLoaded", () => {
     freeze();
   }
 
+  //moving the blocks right by changing the current position
   function moveRight() {
+    //checking to see if the block is at the right edge of the board
+    let atRightEdge = currentTetromino.some(index => (currentPosition + index) % (boardWidth) === boardWidth - 1);
+    console.log(atRightEdge);
     remove();
-    currentPosition += 1;
+    if(!atRightEdge){
+      currentPosition += 1;
+    } 
     draw();
     freeze();
   }
