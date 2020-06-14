@@ -132,17 +132,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
   //moving the blocks right by changing the current position
   function moveRight() {
-    //checking to see if the block is at the right edge of the board
-    let atRightEdge = currentTetromino.some(index => {
-      return (currentPosition + index) % (boardWidth) === boardWidth - 1
-    });
-    console.log(atRightEdge);
     remove();
-    if(!atRightEdge){
+    //checking to see if the block is at the right edge of the board
+    if(!currentTetromino.some(index => (currentPosition + index) % (boardWidth) === boardWidth - 1)){
+      //move block right if it is not at the left edge of the board
       currentPosition += 1;
-    } 
+    }
+    //bounce the block back if it incounters a freeze block while moving right
+    if(currentTetromino.some(index => squares[currentPosition + index].classList.contains('freeze'))){
+      currentPosition -= 1;
+    }
     draw();
-    freeze();
   }
 
   function moveDown() {
