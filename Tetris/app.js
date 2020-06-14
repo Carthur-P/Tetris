@@ -16,7 +16,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   //Stroing all th <div> as an array
   let squares = Array.from(document.querySelectorAll("#board div"));
-  console.log(squares);
 
   //Creating all the tetris blocks and their 4 rotations
   let lShape1 = [
@@ -102,40 +101,33 @@ document.addEventListener("DOMContentLoaded", () => {
   //check if the blocks should stop
   function freeze() {
     //use .some() so as soon as one square reaches the bottom, the loop breaks instead of using foreach which will go through the whole array.
-    currentTetromino.some((index) => {
-      if (squares[currentPosition + index + boardWidth].classList.contains("freeze")) {
-        //Adding the class 'freeze' to all the <div> that form the block
-        currentTetromino.forEach((index) => {
-          squares[currentPosition + index].classList.add("freeze");
-        });
-        //creating a new block at the top of the board
-        currentPosition = 6;
-        tetrominoSelector = tetrominos[Math.floor(Math.random() * tetrominos.length)];
-        currentTetromino = tetrominoSelector[0];
-        draw();
-      }
-    });
+    //arrow function => with no curly brackets {} is an explicit one line return code 
+    if(currentTetromino.some(index => squares[currentPosition + index + boardWidth].classList.contains("freeze"))){
+      //Adding the class 'freeze' to all the <div> that form the block
+      currentTetromino.forEach(index => {
+        squares[currentPosition + index].classList.add("freeze");
+      });
+      //creating a new block at the top of the board
+      currentPosition = 6;
+      tetrominoSelector = tetrominos[Math.floor(Math.random() * tetrominos.length)];
+      currentTetromino = tetrominoSelector[0];
+      draw();
+    }
   }
 
   //moving the blocks left by changing the current position
   function moveLeft() {
     remove();
     //checking to see if the block is at the left edge of the board
-    let atLeftEdge = currentTetromino.some(index => {
-      return (currentPosition + index) % boardWidth === 0
-    });
-    //move block left if it is not at the left edge of the board
-    if(!atLeftEdge){
+    if(!currentTetromino.some(index => (currentPosition + index) % boardWidth === 0)){
+      //move block left if it is not at the left edge of the board
       currentPosition -= 1;
     }
     //bounce the block back if it incounters a freeze block while moving left
-    if(currentTetromino.some(index => {
-      return squares[currentPosition + index].classList.contains('freeze');
-    })){
+    if(currentTetromino.some(index => squares[currentPosition + index].classList.contains('freeze'))){
       currentPosition += 1;
     }
     draw();
-    freeze();
   }
 
   //moving the blocks right by changing the current position
