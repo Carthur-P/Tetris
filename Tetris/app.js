@@ -6,8 +6,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const board = document.getElementById("board");
   const previewBoard = document.getElementById("previewBoard");
   const startButton = document.getElementById("startButton");
-  const score = document.getElementById("score");
+  const scoreBoard = document.getElementById("score");
   let timer = null;
+  let score = 0;
 
   //setting up the tetris board
   for (i = 0; i < boardSize; i++) {
@@ -238,7 +239,13 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       if(rowDiv.every((index) => squares[index].classList.contains("freeze"))){
-        console.log('Hi');
+        score += 10;
+        scoreBoard.innerHTML = "Score: " + score;
+        rowDiv.forEach((index) => {
+          squares[index].classList.remove("freeze");
+          squares[index].classList.remove("tetromino");
+          squares.splice
+        });
       }
     }
   }
