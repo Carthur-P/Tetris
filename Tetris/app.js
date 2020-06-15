@@ -110,6 +110,16 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  function createNextTetromino(){
+    nextTetrominoSelector = random();
+    nextTetrominos[nextTetrominoSelector].forEach(index => {
+      previewSquares[previewBoardWidth + index].classList.remove("tetromino");
+    });
+    nextTetrominos[nextTetrominoSelector].forEach(index => {
+      previewSquares[previewBoardWidth + index].classList.add("tetromino");
+    });
+    return nextTetrominoSelector;
+  }
 
   //removing block form screen
   function remove(){
@@ -129,8 +139,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
       //creating a new block at the top of the board
       currentPosition = 6;
-      currentTetromino = nextTetromino;
-      console.log(nextTetromino);
+      currentTetromino = tetrominos[createNextTetromino()][0];
       draw();
     }
   }
@@ -184,7 +193,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   //starting game timer
   draw();
-  drawNext();
   const timer = setInterval(() => {
     remove();
     currentPosition += boardWidth;
