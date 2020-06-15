@@ -111,7 +111,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let currentPosition = 6;
   let rotationSelector = 0;
   let tetrominoSelector = random();
-  let nextTetrominoSelector = 0;
+  let nextTetrominoSelector = random();
   let currentTetromino = tetrominos[tetrominoSelector][rotationSelector];
 
   //drawing the block onto screen
@@ -130,8 +130,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   //function that create and draw the next tetromino
-  function createNextTetromino() {
-    nextTetrominoSelector = random();
+  function drawNext() {
     //removing drawn tetromino
     previewSquares.forEach((index) => {
       index.classList.remove("tetromino");
@@ -146,13 +145,8 @@ document.addEventListener("DOMContentLoaded", () => {
   function freeze() {
     //use .some() so as soon as one square reaches the bottom, the loop breaks instead of using foreach which will go through the whole array.
     //arrow function => with no curly brackets {} is an explicit one line return code
-    if (
-      currentTetromino.some((index) =>
-        squares[currentPosition + index + boardWidth].classList.contains(
-          "freeze"
-        )
-      )
-    ) {
+    if (currentTetromino.some((index) =>
+        squares[currentPosition + index + boardWidth].classList.contains("freeze"))) {
       //Adding the class 'freeze' to all the <div> that form the block
       currentTetromino.forEach((index) => {
         squares[currentPosition + index].classList.add("freeze");
@@ -162,7 +156,8 @@ document.addEventListener("DOMContentLoaded", () => {
       tetrominoSelector = nextTetrominoSelector;
       currentTetromino = tetrominos[tetrominoSelector][0];
       draw();
-      createNextTetromino();
+      nextTetrominoSelector = random();
+      drawNext();
     }
   }
 
@@ -247,15 +242,13 @@ document.addEventListener("DOMContentLoaded", () => {
       startButton.innerHTML = "Pause";
       console.log()
       draw();
-      createNextTetromino();
+      drawNext();
       timer = setInterval(() => {
         moveDown();
       }, 500);
-      console.log(timer);
     } else if (startButton.innerHTML === "Pause"){
       startButton.innerHTML = "Start";
       clearInterval(timer);
-      console.log(timer);
     }
   });
 });
