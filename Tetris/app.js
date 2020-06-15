@@ -165,20 +165,12 @@ document.addEventListener("DOMContentLoaded", () => {
   function moveLeft() {
     remove();
     //checking to see if the block is at the left edge of the board
-    if (
-      !currentTetromino.some(
-        (index) => (currentPosition + index) % boardWidth === 0
-      )
-    ) {
+    if(!currentTetromino.some((index) => (currentPosition + index) % boardWidth === 0)){
       //move block left if it is not at the left edge of the board
       currentPosition -= 1;
     }
     //bounce the block back if it incounters a freeze block while moving left
-    if (
-      currentTetromino.some((index) =>
-        squares[currentPosition + index].classList.contains("freeze")
-      )
-    ) {
+    if(currentTetromino.some((index) => squares[currentPosition + index].classList.contains("freeze"))){
       currentPosition += 1;
     }
     draw();
@@ -188,20 +180,12 @@ document.addEventListener("DOMContentLoaded", () => {
   function moveRight() {
     remove();
     //checking to see if the block is at the right edge of the board
-    if (
-      !currentTetromino.some(
-        (index) => (currentPosition + index) % boardWidth === boardWidth - 1
-      )
-    ) {
+    if(!currentTetromino.some((index) => (currentPosition + index) % boardWidth === boardWidth - 1)) {
       //move block right if it is not at the left edge of the board
       currentPosition += 1;
     }
     //bounce the block back if it incounters a freeze block while moving right
-    if (
-      currentTetromino.some((index) =>
-        squares[currentPosition + index].classList.contains("freeze")
-      )
-    ) {
+    if(currentTetromino.some((index) => squares[currentPosition + index].classList.contains("freeze"))) {
       currentPosition -= 1;
     }
     draw();
