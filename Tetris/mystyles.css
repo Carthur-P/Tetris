@@ -5,6 +5,7 @@
     width: 400px;
     height: 625px;
     float: left;
+    margin-bottom: 50px;
 }
 
 #board div{
@@ -24,6 +25,10 @@
 #previewBoard div{
     width: 25px;
     height: 25px;
+}
+
+#control{
+    clear: both;
 }
 
 .tetromino {
