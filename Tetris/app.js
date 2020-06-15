@@ -85,7 +85,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let currentTetromino = tetrominoSelector[rotationSelector];
   
   function nextBlock(){
-    return tetrominoSelector[random()][0];
+    return tetrominos[random()][0];
   }
 
   //drawing the block onto screen
