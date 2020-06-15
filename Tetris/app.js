@@ -192,7 +192,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if(rotationSelector == currentTetromino.length){
       rotationSelector = 0;
     }
-    currentTetromino = tetrominoSelector[rotationSelector]
+    currentTetromino = tetrominos[tetrominoSelector][rotationSelector];
     draw();
   }
 
