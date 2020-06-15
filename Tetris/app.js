@@ -163,49 +163,57 @@ document.addEventListener("DOMContentLoaded", () => {
 
   //moving the blocks left by changing the current position
   function moveLeft() {
-    remove();
-    //checking to see if the block is at the left edge of the board
-    if(!currentTetromino.some((index) => (currentPosition + index) % boardWidth === 0)){
-      //move block left if it is not at the left edge of the board
-      currentPosition -= 1;
+    if(timer){
+      remove();
+      //checking to see if the block is at the left edge of the board
+      if(!currentTetromino.some((index) => (currentPosition + index) % boardWidth === 0)){
+        //move block left if it is not at the left edge of the board
+        currentPosition -= 1;
+      }
+      //bounce the block back if it incounters a freeze block while moving left
+      if(currentTetromino.some((index) => squares[currentPosition + index].classList.contains("freeze"))){
+        currentPosition += 1;
+      }
+      draw();
     }
-    //bounce the block back if it incounters a freeze block while moving left
-    if(currentTetromino.some((index) => squares[currentPosition + index].classList.contains("freeze"))){
-      currentPosition += 1;
-    }
-    draw();
   }
 
   //moving the blocks right by changing the current position
   function moveRight() {
-    remove();
-    //checking to see if the block is at the right edge of the board
-    if(!currentTetromino.some((index) => (currentPosition + index) % boardWidth === boardWidth - 1)) {
-      //move block right if it is not at the left edge of the board
-      currentPosition += 1;
-    }
-    //bounce the block back if it incounters a freeze block while moving right
-    if(currentTetromino.some((index) => squares[currentPosition + index].classList.contains("freeze"))) {
-      currentPosition -= 1;
-    }
-    draw();
+    if(timer){
+      remove();
+      //checking to see if the block is at the right edge of the board
+      if(!currentTetromino.some((index) => (currentPosition + index) % boardWidth === boardWidth - 1)) {
+        //move block right if it is not at the left edge of the board
+        currentPosition += 1;
+      }
+      //bounce the block back if it incounters a freeze block while moving right
+      if(currentTetromino.some((index) => squares[currentPosition + index].classList.contains("freeze"))) {
+        currentPosition -= 1;
+      }
+      draw();
+    } 
   }
 
   function moveDown() {
-    remove();
-    currentPosition += boardWidth;
-    draw();
-    freeze();
+    if(timer){
+      remove();
+      currentPosition += boardWidth;
+      draw();
+      freeze();
+    }
   }
 
   function rotate() {
-    remove();
-    rotationSelector++;
-    if (rotationSelector == currentTetromino.length) {
-      rotationSelector = 0;
+    if(timer){
+      remove();
+      rotationSelector++;
+      if (rotationSelector == currentTetromino.length) {
+        rotationSelector = 0;
+      }
+      currentTetromino = tetrominos[tetrominoSelector][rotationSelector];
+      draw();
     }
-    currentTetromino = tetrominos[tetrominoSelector][rotationSelector];
-    draw();
   }
 
   //key press event
@@ -233,6 +241,7 @@ document.addEventListener("DOMContentLoaded", () => {
     } else if (startButton.innerHTML === "Pause"){
       startButton.innerHTML = "Start";
       clearInterval(timer);
+      timer = null;
     }
   });
 });
