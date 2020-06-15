@@ -158,6 +158,7 @@ document.addEventListener("DOMContentLoaded", () => {
       draw();
       nextTetrominoSelector = random();
       drawNext();
+      addScore();
     }
   }
 
@@ -228,6 +229,19 @@ document.addEventListener("DOMContentLoaded", () => {
       rotate();
     }
   });
+
+  function addScore(){
+    for(let i = 0; i < boardSize; i += boardWidth){
+      let rowDiv = [];
+      for(let j = 0; j < boardWidth; j++){
+        rowDiv.push(i + j)
+      }
+
+      if(rowDiv.every((index) => squares[index].classList.contains("freeze"))){
+        console.log('Hi');
+      }
+    }
+  }
 
   startButton.addEventListener("click", () => {
     if(startButton.innerHTML === "Start"){
