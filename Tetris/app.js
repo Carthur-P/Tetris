@@ -2,12 +2,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const boardSize = 400;
   const boardWidth = 16;
   const previewBoardSize = 16;
+  const previewBoardWidth = 4;
   const board = document.getElementById("board");
   const previewBoard = document.getElementById('previewBoard');
   const startButton = document.getElementById("startButton");
   const score = document.getElementById("score");
 
-  //Setting up the tetris board
+  //setting up the tetris board
   for(i = 0; i < boardSize; i++) {
     board.innerHTML += "<div></div>";
   }
@@ -22,10 +23,13 @@ document.addEventListener("DOMContentLoaded", () => {
     previewBoard.innerHTML += "<div></div>";
   }
 
-  //Stroing all th <div> as an array
+  //stroing all the <div> that makes the board as an array
   let squares = Array.from(document.querySelectorAll("#board div"));
 
-  //Creating all the tetris blocks and their 4 rotations
+  //storing all the <div> that makes up the preview board as an array
+  let previewSquares = Array.from(document.querySelectorAll("#previewBoard div"));
+
+  //creating all the tetris blocks and their 4 rotations
   let lShape1 = [
     [0, 1, 2, boardWidth],
     [0, 1, boardWidth + 1, boardWidth * 2 + 1],
@@ -77,16 +81,26 @@ document.addEventListener("DOMContentLoaded", () => {
 
   //array container all the tetrimonoe blocks
   const tetrominos = [lShape1, lShape2, iShape, tShape, zShape1, zShape2, squareShape];
+
+  //setting up preview tetromino components
+  const nextTetrominos = [
+    [0, 1, 2, previewBoardWidth],
+    [0, 1, 2, previewBoardWidth + 2],
+    [0, 1, 2, 3],
+    [0, 1, 2, previewBoardWidth + 1],
+    [previewBoardWidth * 1, previewBoardWidth * 1 + 1, 1, 2],
+    [1, 2, previewBoardWidth * 1 + 2, previewBoardWidth * 1 + 3],
+    [1, 2, previewBoardWidth * 1 + 1, previewBoardWidth * 1 + 2],
+  ];
+
   //setting up random number generator
   let random = () => Math.floor(Math.random() * tetrominos.length);
+
+  //create current tetromino
   let currentPosition = 6;
   let rotationSelector = 0;
   let tetrominoSelector = tetrominos[random()];
   let currentTetromino = tetrominoSelector[rotationSelector];
-  
-  function nextBlock(){
-    return tetrominos[random()][0];
-  }
 
   //drawing the block onto screen
   function draw(){
@@ -95,6 +109,7 @@ document.addEventListener("DOMContentLoaded", () => {
       squares[currentPosition + index].classList.add("tetromino");
     });
   }
+
 
   //removing block form screen
   function remove(){
@@ -114,7 +129,8 @@ document.addEventListener("DOMContentLoaded", () => {
       });
       //creating a new block at the top of the board
       currentPosition = 6;
-      currentTetromino = nextBlock();
+      currentTetromino = nextTetromino;
+      console.log(nextTetromino);
       draw();
     }
   }
@@ -168,6 +184,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   //starting game timer
   draw();
+  drawNext();
   const timer = setInterval(() => {
     remove();
     currentPosition += boardWidth;
