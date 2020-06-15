@@ -75,16 +75,21 @@ document.addEventListener("DOMContentLoaded", () => {
     [1, 2, boardWidth * 1 + 1, boardWidth * 1 + 2]
   ];
 
-  //seeting up current block position and rotation
-  //block will be chosen at random
+  //array container all the tetrimonoe blocks
   const tetrominos = [lShape1, lShape2, iShape, tShape, zShape1, zShape2, squareShape];
+  //setting up random number generator
+  let random = () => Math.floor(Math.random() * tetrominos.length);
   let currentPosition = 6;
   let rotationSelector = 0;
-  let tetrominoSelector = tetrominos[Math.floor(Math.random() * tetrominos.length)];
+  let tetrominoSelector = tetrominos[random()];
   let currentTetromino = tetrominoSelector[rotationSelector];
+  
+  function nextBlock(){
+    return tetrominoSelector[random()][0];
+  }
 
   //drawing the block onto screen
-  function draw() {
+  function draw(){
     currentTetromino.forEach((index) => {
       //changing the div css styling
       squares[currentPosition + index].classList.add("tetromino");
@@ -92,14 +97,14 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   //removing block form screen
-  function remove() {
+  function remove(){
     currentTetromino.forEach((index) => {
       squares[currentPosition + index].classList.remove("tetromino");
     });
   }
 
   //check if the blocks should stop
-  function freeze() {
+  function freeze(){
     //use .some() so as soon as one square reaches the bottom, the loop breaks instead of using foreach which will go through the whole array.
     //arrow function => with no curly brackets {} is an explicit one line return code 
     if(currentTetromino.some(index => squares[currentPosition + index + boardWidth].classList.contains("freeze"))){
@@ -109,14 +114,13 @@ document.addEventListener("DOMContentLoaded", () => {
       });
       //creating a new block at the top of the board
       currentPosition = 6;
-      tetrominoSelector = tetrominos[Math.floor(Math.random() * tetrominos.length)];
-      currentTetromino = tetrominoSelector[0];
+      currentTetromino = nextBlock();
       draw();
     }
   }
 
   //moving the blocks left by changing the current position
-  function moveLeft() {
+  function moveLeft(){
     remove();
     //checking to see if the block is at the left edge of the board
     if(!currentTetromino.some(index => (currentPosition + index) % boardWidth === 0)){
@@ -131,7 +135,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   //moving the blocks right by changing the current position
-  function moveRight() {
+  function moveRight(){
     remove();
     //checking to see if the block is at the right edge of the board
     if(!currentTetromino.some(index => (currentPosition + index) % (boardWidth) === boardWidth - 1)){
@@ -145,14 +149,14 @@ document.addEventListener("DOMContentLoaded", () => {
     draw();
   }
 
-  function moveDown() {
+  function moveDown(){
     remove();
     currentPosition += boardWidth;
     draw();
     freeze();
   }
 
-  function rotate() {
+  function rotate(){
     remove();
     rotationSelector ++;
     if(rotationSelector == currentTetromino.length){
