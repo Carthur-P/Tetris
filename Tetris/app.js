@@ -112,10 +112,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function createNextTetromino(){
     nextTetrominoSelector = random();
-    nextTetrominos[nextTetrominoSelector].forEach(index => {
-      previewSquares[previewBoardWidth + index].classList.remove("tetromino");
+    previewSquares.forEach((index) => {
+      index.classList.remove("tetromino");
     });
-    nextTetrominos[nextTetrominoSelector].forEach(index => {
+    nextTetrominos[nextTetrominoSelector].forEach((index) => {
       previewSquares[previewBoardWidth + index].classList.add("tetromino");
     });
     return nextTetrominoSelector;
@@ -132,7 +132,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function freeze(){
     //use .some() so as soon as one square reaches the bottom, the loop breaks instead of using foreach which will go through the whole array.
     //arrow function => with no curly brackets {} is an explicit one line return code 
-    if(currentTetromino.some(index => squares[currentPosition + index + boardWidth].classList.contains("freeze"))){
+    if(currentTetromino.some((index) => squares[currentPosition + index + boardWidth].classList.contains("freeze"))){
       //Adding the class 'freeze' to all the <div> that form the block
       currentTetromino.forEach(index => {
         squares[currentPosition + index].classList.add("freeze");
@@ -148,12 +148,12 @@ document.addEventListener("DOMContentLoaded", () => {
   function moveLeft(){
     remove();
     //checking to see if the block is at the left edge of the board
-    if(!currentTetromino.some(index => (currentPosition + index) % boardWidth === 0)){
+    if(!currentTetromino.some((index) => (currentPosition + index) % boardWidth === 0)){
       //move block left if it is not at the left edge of the board
       currentPosition -= 1;
     }
     //bounce the block back if it incounters a freeze block while moving left
-    if(currentTetromino.some(index => squares[currentPosition + index].classList.contains('freeze'))){
+    if(currentTetromino.some((index) => squares[currentPosition + index].classList.contains('freeze'))){
       currentPosition += 1;
     }
     draw();
@@ -163,12 +163,12 @@ document.addEventListener("DOMContentLoaded", () => {
   function moveRight(){
     remove();
     //checking to see if the block is at the right edge of the board
-    if(!currentTetromino.some(index => (currentPosition + index) % (boardWidth) === boardWidth - 1)){
+    if(!currentTetromino.some((index) => (currentPosition + index) % (boardWidth) === boardWidth - 1)){
       //move block right if it is not at the left edge of the board
       currentPosition += 1;
     }
     //bounce the block back if it incounters a freeze block while moving right
-    if(currentTetromino.some(index => squares[currentPosition + index].classList.contains('freeze'))){
+    if(currentTetromino.some((index) => squares[currentPosition + index].classList.contains('freeze'))){
       currentPosition -= 1;
     }
     draw();
