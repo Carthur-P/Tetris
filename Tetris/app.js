@@ -79,10 +79,10 @@ document.addEventListener("DOMContentLoaded", () => {
     [1, 2, boardWidth * 1 + 1, boardWidth * 1 + 2]
   ];
 
-  //array container all the tetrimonoe blocks
+  //array containing all the tetrimonoe
   const tetrominos = [lShape1, lShape2, iShape, tShape, zShape1, zShape2, squareShape];
 
-  //setting up preview tetromino components
+  //array containing all the preview tetrominoes
   const nextTetrominos = [
     [0, 1, 2, previewBoardWidth],
     [0, 1, 2, previewBoardWidth + 2],
@@ -111,20 +111,23 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  function createNextTetromino(){
-    nextTetrominoSelector = random();
-    previewSquares.forEach((index) => {
-      index.classList.remove("tetromino");
-    });
-    nextTetrominos[nextTetrominoSelector].forEach((index) => {
-      previewSquares[previewBoardWidth + index].classList.add("tetromino");
-    });
-  }
-
   //removing block form screen
   function remove(){
     currentTetromino.forEach((index) => {
       squares[currentPosition + index].classList.remove("tetromino");
+    });
+  }
+  
+  //function that create and draw the next tetromino
+  function createNextTetromino(){
+    nextTetrominoSelector = random();
+    //removing drawn tetromino
+    previewSquares.forEach((index) => {
+      index.classList.remove("tetromino");
+    });
+    //drawing next tetromino
+    nextTetrominos[nextTetrominoSelector].forEach((index) => {
+      previewSquares[previewBoardWidth + index].classList.add("tetromino");
     });
   }
 
