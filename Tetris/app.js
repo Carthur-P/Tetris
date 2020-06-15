@@ -84,13 +84,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   //array containing all the preview tetrominoes
   const nextTetrominos = [
-    [0, 1, 2, previewBoardWidth], //L block 1
-    [0, 1, 2, previewBoardWidth + 2], //L block 2
+    [0, previewBoardWidth, previewBoardWidth + 1, previewBoardWidth + 2], //L block 1
+    [2, previewBoardWidth, previewBoardWidth + 1, previewBoardWidth + 2], //L block 2
     [0, 1, 2], //I block
-    [0, 1, 2, previewBoardWidth + 1], //Z block 1
+    [1, previewBoardWidth, previewBoardWidth + 1, previewBoardWidth + 2], //T block 
+    [1, 2, previewBoardWidth, previewBoardWidth + 1], //Z block 1
     [0, 1, previewBoardWidth + 1, previewBoardWidth + 2], //Z block 2
-    [1, 2, previewBoardWidth * 1 + 2, previewBoardWidth * 1 + 3], //Square block
-    [1],
+    [1], //square block
   ];
 
   //setting up random number generator
