@@ -16,7 +16,7 @@
     background-color: aqua;
     display: flex;
     flex-wrap: wrap;
-    width: 100px;
+    width: 75px;
     margin-left: 25px;
     float: left;
 }

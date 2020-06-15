@@ -1,8 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
   const boardSize = 400;
   const boardWidth = 16;
-  const previewBoardSize = 16;
-  const previewBoardWidth = 4;
+  const previewBoardSize = 9;
+  const previewBoardWidth = 3;
   const board = document.getElementById("board");
   const previewBoard = document.getElementById('previewBoard');
   const startButton = document.getElementById("startButton");
@@ -31,17 +31,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
   //creating all the tetris blocks and their 4 rotations
   let lShape1 = [
-    [0, 1, 2, boardWidth],
-    [0, 1, boardWidth + 1, boardWidth * 2 + 1],
-    [boardWidth * 2, boardWidth * 2 + 1, boardWidth * 2 + 2, boardWidth + 2],
-    [1, boardWidth * 1 + 1, boardWidth * 2 + 1, boardWidth * 2 + 2]
+    [0, boardWidth, boardWidth + 1, boardWidth + 2],
+    [1, 2, boardWidth + 1, boardWidth * 2 + 1],
+    [boardWidth, boardWidth + 1, boardWidth + 2, boardWidth * 2 + 2],
+    [1, boardWidth + 1, boardWidth * 2, boardWidth * 2 + 1]
   ];
 
   let lShape2 = [
-    [0, 1, 2, boardWidth + 2],
-    [1, boardWidth + 1, boardWidth * 2 + 1, boardWidth * 2],
-    [boardWidth, boardWidth * 2, boardWidth * 2 + 1, boardWidth * 2 + 2],
-    [1, 2, boardWidth + 1, boardWidth * 2 + 1]
+    [2, boardWidth, boardWidth + 1, boardWidth + 2],
+    [1, boardWidth + 1, boardWidth * 2 + 1, boardWidth * 2 + 2],
+    [boardWidth, boardWidth + 1, boardWidth + 2, boardWidth * 2],
+    [0, 1, boardWidth + 1, boardWidth * 2 + 1]
   ];
 
   let iShape = [
@@ -52,31 +52,31 @@ document.addEventListener("DOMContentLoaded", () => {
   ];
 
   let tShape = [
-    [0, 1, 2, boardWidth + 1],
-    [1, boardWidth + 1, boardWidth * 2 + 1, boardWidth],
-    [boardWidth * 2, boardWidth * 2 + 1, boardWidth * 2 + 2, boardWidth * 1 + 1],
-    [1, boardWidth + 1, boardWidth * 2 + 1, boardWidth + 2]
+    [1, boardWidth, boardWidth + 1, boardWidth + 2],
+    [1, boardWidth + 1, boardWidth + 2, boardWidth * 2 + 1],
+    [boardWidth, boardWidth + 1, boardWidth + 2, boardWidth * 2 + 1],
+    [1, boardWidth, boardWidth + 1, boardWidth * 2 + 1]
   ];
 
   let zShape1 = [
-    [boardWidth * 1, boardWidth * 1 + 1, 1, 2],
+    [1, 2, boardWidth, boardWidth + 1],
     [1, boardWidth + 1, boardWidth + 2, boardWidth * 2 + 2],
-    [boardWidth * 1, boardWidth * 1 + 1, 1, 2],
+    [boardWidth + 1, boardWidth + 2, boardWidth * 2, boardWidth * 2 + 1],
     [0, boardWidth, boardWidth + 1, boardWidth * 2 + 1]
   ];
 
   let zShape2 = [
-    [1, 2, boardWidth * 1 + 2, boardWidth * 1 + 3],
-    [boardWidth * 2 + 1, boardWidth + 1, boardWidth + 2, 2],
-    [1, 2, boardWidth * 1 + 2, boardWidth * 1 + 3],
-    [boardWidth * 2, boardWidth, boardWidth + 1, 1]
+    [0, 1, boardWidth + 1, boardWidth + 2],
+    [2, boardWidth + 1, boardWidth + 2, boardWidth * 2 + 1],
+    [boardWidth, boardWidth + 1, boardWidth * 2 + 1, boardWidth * 2 + 2],
+    [1, boardWidth, boardWidth + 1, boardWidth * 2]
   ];
 
   let squareShape = [
-    [1, 2, boardWidth * 1 + 1, boardWidth * 1 + 2],
-    [1, 2, boardWidth * 1 + 1, boardWidth * 1 + 2],
-    [1, 2, boardWidth * 1 + 1, boardWidth * 1 + 2],
-    [1, 2, boardWidth * 1 + 1, boardWidth * 1 + 2]
+    [1, 2, boardWidth + 1, boardWidth + 2],
+    [1, 2, boardWidth + 1, boardWidth + 2],
+    [1, 2, boardWidth + 1, boardWidth + 2],
+    [1, 2, boardWidth + 1, boardWidth + 2]
   ];
 
   //array containing all the tetrimonoe
@@ -84,13 +84,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   //array containing all the preview tetrominoes
   const nextTetrominos = [
-    [0, 1, 2, previewBoardWidth],
-    [0, 1, 2, previewBoardWidth + 2],
-    [0, 1, 2, 3],
-    [0, 1, 2, previewBoardWidth + 1],
-    [previewBoardWidth * 1, previewBoardWidth * 1 + 1, 1, 2],
-    [1, 2, previewBoardWidth * 1 + 2, previewBoardWidth * 1 + 3],
-    [1, 2, previewBoardWidth * 1 + 1, previewBoardWidth * 1 + 2],
+    [0, 1, 2, previewBoardWidth], //L block 1
+    [0, 1, 2, previewBoardWidth + 2], //L block 2
+    [0, 1, 2], //I block
+    [0, 1, 2, previewBoardWidth + 1], //Z block 1
+    [0, 1, previewBoardWidth + 1, previewBoardWidth + 2], //Z block 2
+    [1, 2, previewBoardWidth * 1 + 2, previewBoardWidth * 1 + 3], //Square block
+    [1],
   ];
 
   //setting up random number generator
