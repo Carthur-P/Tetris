@@ -2,15 +2,18 @@
     background-color: aqua;
     display: flex;
     flex-wrap: wrap;
-    width: 400px;
+    width: 385px;
     height: 625px;
     float: left;
     margin-bottom: 50px;
 }
 
 #board div{
-    width: 25px;
-    height: 25px;
+    width: 20px;
+    height: 20px;
+    border: 1px black solid;
+    border-radius: 5px;
+    margin: 1px 1px 1px 1px;
 }
 
 #previewBoard{

@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   const boardSize = 400;
   const boardWidth = 16;
+  const boardHeight = 25;
   const previewBoardSize = 9;
   const previewBoardWidth = 3;
   const board = document.getElementById("board");
@@ -244,8 +245,10 @@ document.addEventListener("DOMContentLoaded", () => {
         rowDiv.forEach((index) => {
           squares[index].classList.remove("freeze");
           squares[index].classList.remove("tetromino");
-          squares.splice
         });
+        let removedSquares = squares.splice(i, boardWidth);
+        console.log(removedSquares);
+        // squares = removedSquares.concat(squares);
       }
     }
   }
