@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   //setting up bottom of board
   for (i = 0; i < boardWidth; i++) {
-    board.innerHTML += '<div class="freeze"></div>';
+    board.innerHTML += '<div class="bottom"></div>';
   }
 
   //setting up sample board that shows next block
@@ -146,7 +146,8 @@ document.addEventListener("DOMContentLoaded", () => {
     //use .some() so as soon as one square reaches the bottom, the loop breaks instead of using foreach which will go through the whole array.
     //arrow function => with no curly brackets {} is an explicit one line return code
     if (currentTetromino.some((index) =>
-        squares[currentPosition + index + boardWidth].classList.contains("freeze"))) {
+        squares[currentPosition + index + boardWidth].classList.contains("freeze") || 
+        squares[currentPosition + index + boardWidth].classList.contains("bottom"))) {
       //Adding the class 'freeze' to all the <div> that form the block
       currentTetromino.forEach((index) => {
         squares[currentPosition + index].classList.add("freeze");

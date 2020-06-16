@@ -1,11 +1,14 @@
 #board {
+    border: 2px solid black;
+    border-radius: 5px;
     background-color: aqua;
     display: flex;
     flex-wrap: wrap;
     width: 385px;
-    height: 625px;
+    height: 600px;
     float: left;
     margin-bottom: 50px;
+    padding: 5px;
 }
 
 #board div{
@@ -17,12 +20,15 @@
 }
 
 #previewBoard{
+    border: 2px solid black;
+    border-radius: 5px;
     background-color: aqua;
     display: flex;
     flex-wrap: wrap;
     width: 75px;
     margin-left: 25px;
     float: left;
+    padding: 5px;
 }
 
 #previewBoard div{
@@ -40,4 +46,8 @@
 
 .freeze {
     background-color: lawngreen;
+}
+
+.bottom {
+    border: initial !important;
 }
