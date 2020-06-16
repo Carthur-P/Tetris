@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   //setting up the tetris board
   for (i = 0; i < boardSize; i++) {
-    board.innerHTML += "<div></div>";
+    board.innerHTML += `<div id = ${i}></div>`;
   }
 
   //setting up bottom of board
@@ -30,9 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let squares = Array.from(document.querySelectorAll("#board div"));
 
   //storing all the <div> that makes up the preview board as an array
-  let previewSquares = Array.from(
-    document.querySelectorAll("#previewBoard div")
-  );
+  let previewSquares = Array.from(document.querySelectorAll("#previewBoard div"));
 
   //creating all the tetris blocks and their 4 rotations
   let lShape1 = [
@@ -232,23 +230,33 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  //user has filled up a whole row
   function addScore(){
+    //loop that will create all the rows in the board and store it as an array
     for(let i = 0; i < boardSize; i += boardWidth){
       let rowDiv = [];
       for(let j = 0; j < boardWidth; j++){
         rowDiv.push(i + j)
       }
 
+      //if every div in the row array has a class name of 'freeze' meaning that the user have filled up the row
       if(rowDiv.every((index) => squares[index].classList.contains("freeze"))){
+        //add and display score
         score += 10;
         scoreBoard.innerHTML = "Score: " + score;
+        //turn the row of div into a plain div 
         rowDiv.forEach((index) => {
           squares[index].classList.remove("freeze");
           squares[index].classList.remove("tetromino");
         });
+        //remove that row from the array of all the div
         let removedSquares = squares.splice(i, boardWidth);
-        console.log(removedSquares);
-        // squares = removedSquares.concat(squares);
+        //add the array of all div to this remove row of div
+        squares = removedSquares.concat(squares);
+        //update the game board with this new configuration of div 
+        squares.forEach((index) => {
+          board.append(index);
+        });
       }
     }
   }
@@ -269,3 +277,4 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
