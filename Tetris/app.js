@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const scoreBoard = document.getElementById("score");
   let timer = null;
   let score = 0;
+  const colours = ['#C74ED8', 'brown', 'orange', 'white', 'green', 'blue', 'red'];
 
   //setting up the tetris board
   for (i = 0; i < boardSize; i++) {
@@ -118,6 +119,7 @@ document.addEventListener("DOMContentLoaded", () => {
     currentTetromino.forEach((index) => {
       //changing the div css styling
       squares[currentPosition + index].classList.add("tetromino");
+      squares[currentPosition + index].style.backgroundColor = colours[tetrominoSelector];
     });
   }
 
@@ -125,6 +127,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function remove() {
     currentTetromino.forEach((index) => {
       squares[currentPosition + index].classList.remove("tetromino");
+      squares[currentPosition + index].style.backgroundColor = '';
     });
   }
 
