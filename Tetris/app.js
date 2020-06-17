@@ -118,7 +118,6 @@ document.addEventListener("DOMContentLoaded", () => {
   function draw() {
     currentTetromino.forEach((index) => {
       //changing the div css styling
-      squares[currentPosition + index].classList.add("tetromino");
       squares[currentPosition + index].style.backgroundColor = colours[tetrominoSelector];
     });
   }
@@ -126,7 +125,6 @@ document.addEventListener("DOMContentLoaded", () => {
   //removing block form screen
   function remove() {
     currentTetromino.forEach((index) => {
-      squares[currentPosition + index].classList.remove("tetromino");
       squares[currentPosition + index].style.backgroundColor = '';
     });
   }
@@ -135,11 +133,11 @@ document.addEventListener("DOMContentLoaded", () => {
   function drawNext() {
     //removing drawn tetromino
     previewSquares.forEach((index) => {
-      index.classList.remove("tetromino");
+      index.style.backgroundColor = '';
     });
     //drawing next tetromino
     nextTetrominos[nextTetrominoSelector].forEach((index) => {
-      previewSquares[previewBoardWidth + index].classList.add("tetromino");
+      previewSquares[previewBoardWidth + index].style.backgroundColor = colours[nextTetrominoSelector];;
     });
   }
 
