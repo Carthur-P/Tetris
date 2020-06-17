@@ -1,7 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const boardSize = 400;
-  const boardWidth = 16;
-  const boardHeight = 25;
+  const boardSize = 280;
+  const boardWidth = 14;
   const previewBoardSize = 9;
   const previewBoardWidth = 3;
   const board = document.getElementById("board");
