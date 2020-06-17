@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const scoreBoard = document.getElementById("score");
   let timer = null;
   let score = 0;
-  const colours = ['#C74ED8', 'brown', 'orange', 'white', 'green', 'blue', 'red'];
+  const colours = ['#C74ED8', '#C82713', '#F3FF00', '#0051AD', '#0F9519', '#E97F0E', '#0EE9E2'];
 
   //setting up the tetris board
   for (i = 0; i < boardSize; i++) {
@@ -250,7 +250,7 @@ document.addEventListener("DOMContentLoaded", () => {
         //turn the row of div into a plain div 
         rowDiv.forEach((index) => {
           squares[index].classList.remove("freeze");
-          squares[index].classList.remove("tetromino");
+          squares[index].style.backgroundColor = '';
         });
         //remove that row from the array of all the div
         let removedSquares = squares.splice(i, boardWidth);
