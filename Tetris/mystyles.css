@@ -1,34 +1,45 @@
+body {
+    width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#header {
+    text-align: center;
+    width: 100%;
+}
+
 #board {
     border: 2px solid black;
     border-radius: 5px;
-    background-color: aqua;
+    background-color: grey;
     display: flex;
     flex-wrap: wrap;
-    width: 385px;
-    height: 600px;
+    width: 464px;
+    height: 725px;
     float: left;
     margin-bottom: 50px;
     padding: 5px;
 }
 
 #board div{
-    width: 20px;
-    height: 20px;
-    border: 1px black solid;
+    width: 22px;
+    height: 22px;
+    border: 1.5px #686868 solid;
     border-radius: 5px;
-    margin: 1px 1px 1px 1px;
+    margin: 2px 2px 2px 2px;
 }
 
 #previewBoard{
     border: 2px solid black;
     border-radius: 5px;
-    background-color: aqua;
+    background-color: grey;
     display: flex;
     flex-wrap: wrap;
     width: 75px;
     margin-left: 25px;
     float: left;
-    padding: 5px;
+    padding: 10px;
 }
 
 #previewBoard div{
@@ -36,16 +47,16 @@
     height: 25px;
 }
 
-#control{
-    clear: both;
+#control{ 
+    float: right;
 }
 
 .tetromino {
-    background-color: brown;
+    background-color: rgb(179, 31, 31);
 }
 
 .freeze {
-    background-color: lawngreen;
+    background-color: white;
 }
 
 .bottom {
