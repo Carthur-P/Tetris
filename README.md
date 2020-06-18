@@ -18,8 +18,8 @@ This game plays similarly to any other version of Tetris where the aim is to sta
 - __Up arrow:__ rotate block
 
 ## Game
-![Tetris](./images/game.jpg)
+![Tetris](./images/game.JPG)
 
 ## Game Over
-![Tetris](./images/gameOver.jpg)
+![Tetris](./images/gameOver.JPG)
 
